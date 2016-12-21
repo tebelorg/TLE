@@ -1,6 +1,6 @@
 <?php
 
-/* ETL SCRIPT FOR TA.ETL TO EXTRACT TRANSFORM LOAD DATA ~ TEBEL.SG */
+/* ETL BASE SCRIPT FOR TA.ETL TO EXTRACT TRANSFORM LOAD DATA ~ TEBEL.SG */
 
 // check for first parameter - data extract file in csv
 if ($argv[1]=="") die("ERROR - data extract file missing for first parameter\n"); $data_extract_file = $argv[1];
