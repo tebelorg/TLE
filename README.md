@@ -1,6 +1,8 @@
 # TA.ETL
 TA.ETL is a helper to handle data ETL processes (extract, transform, load)
 
+![Sample ETL](https://github.com/tebelorg/TA.ETL/raw/master/sample.png)
+
 # Why This
 Skeleton repository for pooling data management resources.
 
