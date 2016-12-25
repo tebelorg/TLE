@@ -14,15 +14,16 @@ Create a transformation logic / mapping file with 2 rows
 - second row specifying which column in input to take data from
 
 # To Use
-To transform input.csv into output.csv (using transformation logic in mapping.csv)
+To transform input.csv into output.csv using logic in mapping.csv (data formats supported - csv xls xlsx html)
 ```
 php etl_start.php input.csv mapping.csv output.csv
 ```
+
 # Pipeline
 Feature|Details
 :-----:|:------
 Beyond Mapping|support string manipulation and formulas
-New Endpoints|excel spreadsheet, database, webpage, etc
+New Endpoints|database connections for read and write
 Enhancements|explore ETL features from Pentaho and Talend
 
 # License
