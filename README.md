@@ -4,7 +4,7 @@ TA.ETL is a helper to handle data ETL processes (extract, transform, load)
 ![Sample ETL](https://github.com/tebelorg/TA.ETL/raw/master/sample.png)
 
 # Why This
-Skeleton repository for pooling data management resources.
+Skeleton repository for pooling data management resources. For open-source ETL tools that are based on the graphical user interface and with developed features, consider [Pentaho Data Integration](http://community.pentaho.com/projects/data-integration/) or [Talend Open Studio](https://www.talend.com/download/talend-open-studio#t4).
 
 The first and base script to write is to transform spreadsheet data by remapping columns and preparing data for import by downstream system. Specific use case is syncing ipcLink system used by non-profits to MYOB accounting system.
 
@@ -24,7 +24,6 @@ Feature|Details
 :-----:|:------
 Beyond Mapping|support string manipulation and formulas
 New Endpoints|database connections for read and write
-Enhancements|explore ETL features from Pentaho and Talend
 
 # License
 TA.ETL is open-source software released under the MIT license
