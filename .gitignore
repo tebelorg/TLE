@@ -1,6 +1,5 @@
-# exclude test data files in root folder
-
-/*.csv
-/*.xls
-/*.xlsx
-/*.html
+# exclude test data files in src folder
+/src/*.csv
+/src/*.xls
+/src/*.xlsx
+/src/*.html

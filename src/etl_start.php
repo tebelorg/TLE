@@ -18,7 +18,7 @@ if (!file_exists($data_transform_file)) die("ERROR - cannot find " . $data_trans
 $ext_len = strlen(pathinfo($data_transform_file, PATHINFO_EXTENSION)); // use in generating csv filename
 convert_datafile($data_transform_file,substr($data_transform_file,0,strlen($data_transform_file)-$ext_len).'csv');
 $data_transform_file = substr($data_transform_file,0,strlen($data_transform_file)-$ext_len).'csv';
-if (count(file($data_transform_file)) != 2) die ("ERROR - data transform file does not have exactly 2 rows\n");
+if (count(file($data_transform_file)) != 2) die("ERROR - data transform file does not have exactly 2 rows\n");
 $data_transform = fopen($data_transform_file,'r') or die("ERROR - cannot open " . $data_transform_file . "\n");
 
 // check for third parameter - data load file in csv, xls, xlsx, html
