@@ -22,8 +22,8 @@ php etl_start.php input.csv mapping.csv output.csv
 # Pipeline
 Feature|Details
 :-----:|:------
-Beyond Mapping|support string manipulation and formulas
 New Endpoints|database connections for read and write
+Enhancements|support string manipulation and formulas
 
 # License
 TA.ETL is open-source software released under the MIT license
