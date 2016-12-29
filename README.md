@@ -18,7 +18,7 @@ To transform input.csv using logic in mapping.csv into output.csv (data formats 
 ```
 php etl_start.php input.csv mapping.csv output.csv
 ```
-Note that non-csv files will be converted into csv files having same names but with .csv extension for processing.
+(note that non-csv files will be converted into csv files having same names but with .csv extension for processing)
 
 # Pipeline
 Feature|Details
