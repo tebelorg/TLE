@@ -13,6 +13,12 @@ Create a transformation logic / mapping file with 2 rows
 - first row listing the header fields desired in the output
 - second row specifying which column in input to take data
 
+For database input, provide input file in below format for script to autoload
+
+TA.ETL_COMMENTS|DB_SERVER|DB_USER|DB_PASSWORD|DB_NAME|DB_TABLE
+:--------------|:--------|:------|:----------|:------|:-------
+user comments|servername|username|password|database|tablename
+
 # To Use
 To transform input.csv using logic in mapping.csv into output.csv (data formats supported - csv xls xlsx html)
 ```
@@ -23,7 +29,6 @@ php etl_start.php input.csv mapping.csv output.csv
 # Pipeline
 Feature|Details
 :-----:|:------
-New Endpoints|database connections for read and write
 Enhancements|add support for string manipulation and formulas
 
 # License
