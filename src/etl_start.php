@@ -45,7 +45,7 @@ $row_load[$curr_col] = $row_extract[column_to_index($row_mapping[$curr_col])];} 
 function column_to_index($column_value) {
 $column_range = range('A', 'Z'); return array_search(strtoupper($column_value), $column_range);}
 
-function convert_datafile($infile,$outfile) {if ($infile==$outfile) return; // exit if I/O files are the same
+function convert_datafile($infile,$outfile) {
 if ((strtolower(pathinfo($infile, PATHINFO_EXTENSION))!='csv') and 
 (strtolower(pathinfo($infile, PATHINFO_EXTENSION))!='xls') and
 (strtolower(pathinfo($infile, PATHINFO_EXTENSION))!='xlsx') and
@@ -56,6 +56,21 @@ $objReader->setReadDataOnly(true); $objPHPExcel = $objReader->load($infile); // 
 // if input file is Excel remove first row, which is an empty row with sheet name (not supporting multiple sheets)
 if (($infileType == 'Excel5') or ($infileType == 'Excel2007')) $objPHPExcel->getActiveSheet()->removeRow(1);
 
+// check special keyword TA.ETL_COMMENT on cell A1, for special handling if input file
+// is a sql description file to read data records from database (below is the format)
+// TA.ETL_COMMENTS,DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME,DB_TABLE
+// user comments,servername,username,password,database,tablename
+if ($objPHPExcel->getActiveSheet()->getCell('A1')=='TA.ETL_COMMENTS') {
+if (pathinfo($outfile, PATHINFO_EXTENSION)!='csv') die('ERROR - db extraction to csv format only');
+$ext_len = strlen(pathinfo($outfile, PATHINFO_EXTENSION)); // otherwise continue processing
+$outfile = substr($outfile,0,strlen($outfile)-$ext_len-1).'_db.csv'; // append _db to filename
+// update global variables for the data_extract_file to point to the new csv file generated from database
+$GLOBALS['data_extract_file'] = $outfile; $GLOBALS['ext_len'] = strlen(pathinfo($outfile, PATHINFO_EXTENSION));
+db_extract_csv($objPHPExcel,$outfile); // used in extraction to save db into csv, then reload csv as infile
+$infileType = PHPExcel_IOFactory::identify($outfile); $objReader = PHPExcel_IOFactory::createReader($infileType);
+$objReader->setReadDataOnly(true); $objPHPExcel = $objReader->load($outfile);} // load file base on detected type
+
+if ($infile==$outfile) return; // exit if I/O files are same, check here instead of beginning to handle sql case
 if (strtoupper(pathinfo($outfile, PATHINFO_EXTENSION))=='CSV') $outfileType = 'CSV'; // set output file type
 else if (strtoupper(pathinfo($outfile, PATHINFO_EXTENSION))=='XLS') $outfileType = 'Excel5'; // legacy Excel'95
 else if (strtoupper(pathinfo($outfile, PATHINFO_EXTENSION))=='XLSX') $outfileType = 'Excel2007'; // new Excel'07
@@ -65,5 +80,32 @@ else if (strtoupper(pathinfo($outfile, PATHINFO_EXTENSION))=='HTML') $outfileTyp
 else die("ERROR - unsupported output format " . $outfile . "\n");
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, $outfileType);
 if ($outfileType == 'CSV') $objWriter->setUseBOM(true);  $objWriter->save($outfile);}
+
+// for extracting from database to save as csv file
+function db_extract_csv($sql_description,$csv_outfile) {
+$DB_SERVER = $sql_description->getActiveSheet()->getCell('B2');
+$DB_USER = $sql_description->getActiveSheet()->getCell('C2');
+$DB_PASSWORD = $sql_description->getActiveSheet()->getCell('D2');
+$DB_NAME = $sql_description->getActiveSheet()->getCell('E2');
+$DB_TABLE = $sql_description->getActiveSheet()->getCell('F2');
+$DB_QUERY = "SELECT * FROM " . $DB_TABLE; // limit scope to read-only
+
+if (($DB_SERVER=="") or ($DB_USER=="") or ($DB_PASSWORD=="") or ($DB_NAME=="") or ($DB_TABLE==""))
+die("ERROR - info missing in input sql description file\n");
+
+$db_con = @mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME);
+if (mysqli_connect_errno()) die("ERROR - " . mysqli_connect_error() ."\n");
+$db_result = mysqli_query($db_con, $DB_QUERY);
+
+if (empty($db_result) or (mysqli_num_rows($db_result) == 0))
+die("ERROR - nothing found in database from SQL query\n");
+
+$db_num_fields = mysqli_num_fields($db_result); $db_header = array();
+for ($curr_col = 0; $curr_col < $db_num_fields; $curr_col++)
+$db_header[] = mysqli_fetch_field($db_result)->name;
+
+$db_csv = fopen($csv_outfile, 'w'); fputcsv($db_csv, $db_header);
+while($db_row = mysqli_fetch_assoc($db_result)) fputcsv($db_csv, $db_row);
+fclose($db_csv); mysqli_close($db_con);}
 
 ?>
