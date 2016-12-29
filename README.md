@@ -11,10 +11,10 @@ The first and base script to write is to transform spreadsheet data by remapping
 # Set Up
 Create a transformation logic / mapping file with 2 rows
 - first row listing the header fields desired in the output
-- second row specifying which column in input to take data from
+- second row specifying which column in input to take data
 
 # To Use
-To transform input.csv into output.csv using logic in mapping.csv (data formats supported - csv xls xlsx html)
+To transform input.csv using logic in mapping.csv into output.csv (data formats supported - csv xls xlsx html)
 ```
 php etl_start.php input.csv mapping.csv output.csv
 ```
@@ -23,7 +23,7 @@ php etl_start.php input.csv mapping.csv output.csv
 Feature|Details
 :-----:|:------
 New Endpoints|database connections for read and write
-Enhancements|support string manipulation and formulas
+Enhancements|add support for string manipulation and formulas
 
 # License
 TA.ETL is open-source software released under the MIT license
