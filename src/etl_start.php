@@ -38,12 +38,30 @@ fputcsv($data_load,etl_transform($data_extract_row,$data_transform_mapping));}
 fclose($data_extract); fclose($data_transform); fclose($data_load); // close all open files
 convert_datafile(substr($data_load_file,0,strlen($data_load_file)-$ext_len).'csv',$data_load_file);
 
-function etl_transform($row_extract, $row_mapping) {
+function etl_transform($row_extract, $row_mapping) { // perform the actual transformation here
 $row_load = $row_mapping; $num_col = count($row_mapping); for ($curr_col=0; $curr_col<$num_col; $curr_col++){
-$row_load[$curr_col] = $row_extract[column_to_index($row_mapping[$curr_col])];} return $row_load;}
+$row_load[$curr_col] = $row_extract[column_to_index($row_mapping[$curr_col])];
+$row_load[$curr_col] = apply_format_keyword($row_load[$curr_col],$row_mapping[$curr_col]);} return $row_load;}
 
-function column_to_index($column_value) {
-$column_range = range('A', 'Z'); return array_search(strtoupper($column_value), $column_range);}
+function column_to_index($column_value) { // convert column letter into array index
+$parsed_value = strip_format_keyword($column_value); $column_range = range('A', 'Z');
+return array_search($parsed_value, $column_range);}
+
+function strip_format_keyword($mapping_definition) { // remove keyword and return column letter
+$column_letter = str_replace(")","",str_replace(" ","",strtoupper($mapping_definition)));
+$column_letter = str_replace("UPPER(","",$column_letter);
+$column_letter = str_replace("LOWER(","",$column_letter);
+$column_letter = str_replace("TITLE(","",$column_letter);
+$column_letter = str_replace("SENTENCE(","",$column_letter);
+if ((strlen($column_letter)==1) and ctype_alpha($column_letter)) return $column_letter;
+else die("ERROR - mapping definition invalid - " . $mapping_definition . "\n");}
+
+function apply_format_keyword($cell_value,$mapping_definition) { // apply desired formatting
+$mapping_definition = str_replace(")","",str_replace(" ","",strtoupper($mapping_definition)));
+if (strpos($mapping_definition, "UPPER(") !== false) return strtoupper($cell_value);
+else if (strpos($mapping_definition, "LOWER(") !== false) return strtolower($cell_value);
+else if (strpos($mapping_definition, "TITLE(") !== false) return ucwords($cell_value);
+else if (strpos($mapping_definition, "SENTENCE(") !== false) return ucfirst($cell_value); else return $cell_value;}
 
 function convert_datafile($infile,$outfile) {
 if ((strtolower(pathinfo($infile, PATHINFO_EXTENSION))!='csv') and 
