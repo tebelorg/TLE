@@ -17,7 +17,7 @@ B|LOWER(C)|UPPER(F)
 
 - first row labelling the header fields desired in the output
 - second row specifying which column in input to grab data
-- UPPER, LOWER, TITLE, SENTENCE text case formatting
+- UPPER, LOWER, TITLE, SENTENCE case formatting for text
 
 For database input, provide input file in below format for script to autoload
 
