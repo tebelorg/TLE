@@ -10,13 +10,14 @@ The first and base script to write is to transform spreadsheet data by remapping
 
 # Set Up
 Create a transformation logic / mapping file with 2 rows, for eg
-- first row listing the header fields desired in the output
-- second row specifying which column in input to grab data
-- UPPER, LOWER, TITLE, SENTENCE string case formatting
 
 Name|Email|User ID
 :---|:----|:--
 B|LOWER(C)|UPPER(F)
+
+- first row listing the header fields desired in the output
+- second row specifying which column in input to grab data
+- UPPER, LOWER, TITLE, SENTENCE string case formatting
 
 For database input, provide input file in below format for script to autoload
 
