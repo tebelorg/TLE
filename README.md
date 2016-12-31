@@ -9,15 +9,15 @@ Skeleton repository for pooling data management resources. For open-source ETL t
 The first and base script to write is to transform spreadsheet data by remapping columns and preparing data for import by downstream system. Specific use case is syncing ipcLink system used by non-profits to MYOB accounting system.
 
 # Set Up
-Create a transformation logic / mapping file with 2 rows, for eg
+Create a transformation mapping file with 2 rows, for eg
 
 Name|Email|User ID
 :---|:----|:--
 B|LOWER(C)|UPPER(F)
 
-- first row listing the header fields desired in the output
+- first row labelling the header fields desired in the output
 - second row specifying which column in input to grab data
-- UPPER, LOWER, TITLE, SENTENCE string case formatting
+- UPPER, LOWER, TITLE, SENTENCE text case formatting
 
 For database input, provide input file in below format for script to autoload
 
