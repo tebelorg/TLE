@@ -9,9 +9,14 @@ Skeleton repository for pooling data management resources. For open-source ETL t
 The first and base script to write is to transform spreadsheet data by remapping columns and preparing data for import by downstream system. Specific use case is syncing ipcLink system used by non-profits to MYOB accounting system.
 
 # Set Up
-Create a transformation logic / mapping file with 2 rows
+Create a transformation logic / mapping file with 2 rows, for eg
 - first row listing the header fields desired in the output
-- second row specifying which column in input to take data
+- second row specifying which column in input to grab data
+- UPPER, LOWER, TITLE, SENTENCE string case formatting
+
+Name|Email|User ID
+:---|:----|:--
+B|LOWER(C)|UPPER(F)
 
 For database input, provide input file in below format for script to autoload
 
@@ -29,7 +34,7 @@ php etl_start.php input.csv mapping.csv output.csv
 # Pipeline
 Feature|Details
 :-----:|:------
-Enhancements|add support for string manipulation and formulas
+Enhancements|feel free to review and suggest new features
 
 # License
 TA.ETL is open-source software released under the MIT license
