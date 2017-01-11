@@ -1,6 +1,6 @@
 <?php
 
-/* ETL BASE SCRIPT FOR TA.ETL TO EXTRACT TRANSFORM LOAD DATA ~ TEBEL.SG */
+/* ETL BASE SCRIPT FOR TA.ETL TO EXTRACT TRANSFORM LOAD DATA ~ TEBEL.ORG */
 
 require_once('PHPExcel/PHPExcel.php'); // for managing xls/xlsx/html - https://github.com/PHPOffice/PHPExcel
 
