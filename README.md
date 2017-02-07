@@ -4,7 +4,7 @@ TA.ETL is a helper to handle data ETL processes (extract, transform, load)
 ![Sample ETL](https://github.com/tebelorg/TA.ETL/raw/master/sample.png)
 
 # Why This
-Repository for pooling data management modules. The first and base script coded is to transform spreadsheet data (or MySQL database) by remapping columns and preparing data for import by downstream system. Specific use case is syncing ipcLink system used by Singapore non-profits to MYOB accounting system.
+TA.ETL lets you programmatically transform spreadsheet data (or MySQL database) by remapping columns and preparing data for import by downstream system. Example use case is syncing ipcLink system used by Singapore non-profits to MYOB accounting system.
 
 For open-source ETL tools that are based on GUI, consider using [Pentaho Data Integration](http://community.pentaho.com/projects/data-integration/) or [Talend Open Studio](https://www.talend.com/download/talend-open-studio#t4).
 
@@ -26,13 +26,11 @@ TA.ETL_COMMENTS|DB_SERVER|DB_USER|DB_PASSWORD|DB_NAME|DB_TABLE
 user comments|servername|username|password|database|tablename
 
 # To Use
-To transform input.csv using logic in mapping.csv into output.csv (data formats supported - csv xls xlsx html)
+To transform input.csv using mapping.csv logic into output.csv (supported data formats - csv xls xlsx html)
 ```
 php etl_start.php input.csv mapping.csv output.csv
 ```
-Note that non-csv files will be converted into csv files having same names but with .csv extension for processing.
-
-To call TA.ETL from another PHP script, simply assign the variables accordingly and include etl_start.php
+To call TA.ETL within a PHP script, simply assign the variables accordingly and include etl_start.php
 ```
 $argv[1] = "input.csv"; $argv[2] = "mapping.csv"; $argv[3] = "output.csv"; include('etl_start.php');
 ```
