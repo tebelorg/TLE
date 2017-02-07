@@ -4,9 +4,9 @@ TA.ETL is a helper to handle data ETL processes (extract, transform, load)
 ![Sample ETL](https://github.com/tebelorg/TA.ETL/raw/master/sample.png)
 
 # Why This
-TA.ETL lets you programmatically transform spreadsheet data (or MySQL database) by remapping columns and preparing data for import by downstream system. Example use case is syncing ipcLink system used by Singapore non-profits to MYOB accounting system.
+TA.ETL lets you programmatically transform spreadsheet data (or MySQL database) by remapping columns and preparing data for consumption by downstream systems.
 
-For open-source ETL tools that are based on GUI, consider using [Pentaho Data Integration](http://community.pentaho.com/projects/data-integration/) or [Talend Open Studio](https://www.talend.com/download/talend-open-studio#t4).
+Example use case is syncing ipcLink system used by Singapore non-profits to MYOB accounting system. For open-source ETL tools that are based on GUI, consider using [Pentaho Data Integration](http://community.pentaho.com/projects/data-integration/) or [Talend Open Studio](https://www.talend.com/download/talend-open-studio#t4).
 
 # Set Up
 Create a transformation mapping file with 2 rows, for eg
@@ -17,9 +17,9 @@ B|LOWER(C)|UPPER(F)
 
 - first row labelling the header fields desired in the output
 - second row specifying which column in input to grab data
-- UPPER, LOWER, TITLE, SENTENCE case formatting for text
+- use UPPER, LOWER, TITLE, SENTENCE for formatting case
 
-For database input, provide input file in below format for script to autoload
+For database input, provide input file in below format for script to read from database
 
 TA.ETL_COMMENTS|DB_SERVER|DB_USER|DB_PASSWORD|DB_NAME|DB_TABLE
 :--------------|:--------|:------|:----------|:------|:-------
