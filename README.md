@@ -30,7 +30,12 @@ To transform input.csv using logic in mapping.csv into output.csv (data formats 
 ```
 php etl_start.php input.csv mapping.csv output.csv
 ```
-(note that non-csv files will be converted into csv files having same names but with .csv extension for processing)
+Note that non-csv files will be converted into csv files having same names but with .csv extension for processing.
+
+To call TA.ETL from another PHP script, simply assign the variables accordingly and include etl_start.php
+```
+$argv[1] = "input.csv"; $argv[2] = "mapping.csv"; $argv[3] = "output.csv"; include('etl_start.php');
+```
 
 # Pipeline
 Feature|Details
