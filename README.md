@@ -4,7 +4,7 @@ TA.ETL is a helper to handle data ETL processes (extract, transform, load)
 ![Sample ETL](https://github.com/tebelorg/TA.ETL/raw/master/sample.png)
 
 # Why This
-TA.ETL lets you programmatically transform spreadsheet data (or MySQL database) by remapping columns and preparing data for consumption by downstream systems.
+TA.ETL lets you programmatically transform spreadsheet data (or MySQL database) by remapping columns and preparing data (eg changing case-formatting) for consumption by downstream systems.
 
 Example use case is syncing ipcLink system used by Singapore non-profits to MYOB accounting system. For open-source ETL tools that are based on GUI, consider using [Pentaho Data Integration](http://community.pentaho.com/projects/data-integration/) or [Talend Open Studio](https://www.talend.com/download/talend-open-studio#t4).
 
