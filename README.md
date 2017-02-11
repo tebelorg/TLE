@@ -31,7 +31,7 @@ To transform input.csv using mapping.csv logic into output.csv (supported data f
 php etl_start.php input.csv mapping.csv output.csv
 ```
 To call TA.ETL within a PHP script, simply assign the variables accordingly and include etl_start.php
-```
+```php
 $argv[1] = "input.csv"; $argv[2] = "mapping.csv"; $argv[3] = "output.csv"; include('etl_start.php');
 ```
 
