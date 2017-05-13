@@ -1,5 +1,5 @@
 # TA.ETL
-TA.ETL is a helper to handle data ETL processes ~ http://tebel.org
+TA.ETL is a helper for data extract-transform-load (ETL) ~ http://tebel.org
 
 ![Sample ETL](https://github.com/tebelorg/TA.ETL/raw/master/sample.png)
 
