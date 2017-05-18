@@ -1,6 +1,6 @@
 <?php
 
-/* ETL BASE SCRIPT FOR TA.ETL TO EXTRACT TRANSFORM LOAD DATA ~ TEBEL.ORG */
+/* ETL BASE SCRIPT FOR TLE TO EXTRACT TRANSFORM LOAD DATA ~ TEBEL.ORG */
 
 require_once('PHPExcel/PHPExcel.php'); // for managing xls/xlsx/html - https://github.com/PHPOffice/PHPExcel
 
@@ -74,11 +74,11 @@ $objReader->setReadDataOnly(true); $objPHPExcel = $objReader->load($infile); // 
 // if input file is Excel remove first row, which is an empty row with sheet name (not supporting multiple sheets)
 if (($infileType == 'Excel5') or ($infileType == 'Excel2007')) $objPHPExcel->getActiveSheet()->removeRow(1);
 
-// check special keyword TA.ETL_COMMENT on cell A1, for special handling if input file
+// check special keyword TLE_COMMENT on cell A1, for special handling if input file
 // is a sql description file to read data records from database (below is the format)
-// TA.ETL_COMMENTS,DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME,DB_TABLE
+// TLE_COMMENTS,DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME,DB_TABLE
 // user comments,servername,username,password,database,tablename
-if ($objPHPExcel->getActiveSheet()->getCell('A1')=='TA.ETL_COMMENTS') {
+if ($objPHPExcel->getActiveSheet()->getCell('A1')=='TLE_COMMENTS') {
 if (pathinfo($outfile, PATHINFO_EXTENSION)!='csv') die('ERROR - db extraction to csv format only');
 $ext_len = strlen(pathinfo($outfile, PATHINFO_EXTENSION)); // otherwise continue processing
 $outfile = substr($outfile,0,strlen($outfile)-$ext_len-1).'_db.csv'; // append _db to filename
