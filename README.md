@@ -35,10 +35,5 @@ To call TLE within a PHP script, simply assign the variables accordingly and inc
 $argv[1] = "input.csv"; $argv[2] = "mapping.csv"; $argv[3] = "output.csv"; include('etl_start.php');
 ```
 
-# Pipeline
-Feature|Details
-:-----:|:------
-Enhancements|feel free to review and suggest new features
-
 # License
 TLE is open-source software released under the MIT license
