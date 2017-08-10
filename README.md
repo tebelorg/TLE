@@ -1,5 +1,5 @@
 # TLE
-TLE is a helper for data extract-transform-load (ETL) ~ http://tebel.org
+TLE is a helper for data extract-transform-load (ETL)
 
 ![Sample ETL](https://github.com/tebelorg/TLE/raw/master/sample.png)
 
